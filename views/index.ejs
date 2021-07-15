@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+  </head>
+  <body>
+    <h1 style="text-align: center;">Node Syntax Parser 1.0</h2>
+    <div class="description">
+        <p>
+            [작동 방식]<br>
+            1. 에러 로그를 불러옴(.txt파일)<br>
+            2. Preview를 통해 에러를 보여줌<br>
+            3. Parsing 버튼을 눌러 에러의 내용을 한글로 변환<br>
+            4. Alert 버튼을 눌러 변환된 메시지를 알림해줌.
+        </p>
+    </div>
+    
+    <form id="display">
+        <div>
+            <input type="file" id="file_uploads" accept=".txt" multiple>
+        </div>
+        <div class="preview">
+            Preview<br>
+        </div>
+    </form>
+
+    <div class="parsing_div">
+        <button class="parsing" onclick="js:setResult()">Parsing</button>
+    </div>
+
+    <div id=result>
+        Result<br>
+    </div>
+
+    <div class="alert_div">
+        <button class="parsing" onclick="js:setAlert()">Alert</button>
+    </div>
+  </body>
+  <script src="/javascripts/error.js"></script>
+  <script src="/javascripts/Parsing.js"></script>
+  <script src="/javascripts/setData.js"></script>
+</html>

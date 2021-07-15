@@ -1,0 +1,40 @@
+#result {
+    text-align: center;
+    border: solid 1px black;
+    width:50%;
+    margin:0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#display {
+    text-align: center;
+}
+.preview ul{
+    list-style: none;
+}
+.preview{
+    border: 1px solid black;
+    width:50%;
+    margin:0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.parsing_div {
+    text-align: center;
+}
+.description {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.alert_div {
+    text-align: center;
+}
+.parsing {
+    width: 80px;
+    height: 30px;
+}
+.alert {
+    width: 80px;
+    height: 30px;
+}
