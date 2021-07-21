@@ -15,6 +15,53 @@
             4. Alert 버튼을 눌러 변환된 메시지를 알림해줌.
         </p>
     </div>
+    <p style="text-align: center;">아래의 코드를 예제로 진행하였습니다.</p>
+    <div class="view-line">
+        <p>
+            //* UserDefine Start *//<br>
+            const userDefine = {<br>
+                <br>
+            };<br>
+            //* UserDefine End *//<br>
+            <br>
+            isAlive () {<br>
+                return false<br>
+            }<br>
+            <br>
+            async run (input) {<br>
+                //* Input Start *//<br>
+                const $ip = input['ip'];<br>
+                const $port = input['port'];<br>
+                const $user = input['user'];<br>
+                const $pwd = input['pwd'];<br>
+                const $file_name = input['file_name'];<br>
+                //* Input End *//<br>
+                <br>
+                <br>
+                let cmd = 'cat -b ' + file_name;<br>
+                <br>
+                let url ='/api/ssh/command';<br>
+                <br>
+                let data = {<br>
+                    ip:$ip,<br>
+                    port:$port,<br>
+                    user:$user,<br>
+                    pwd:$pwd,<br>
+                    cmd: cmd,<br>
+                }<br>
+                <br>
+                let h = new HttpClient()<br>
+                try {<br>
+                    const res = await h.api(url, data)<br>
+                    return {<br>
+                        result: res.resultData<br>
+                    }<br>
+                } catch(e) {<br>
+                    throw e<br>
+                }<br>
+            }<br>
+        </p>
+    </div>
     
     <form id="display">
         <div>

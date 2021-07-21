@@ -38,3 +38,11 @@
     width: 80px;
     height: 30px;
 }
+.view-line {
+    border: 1px solid black;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
