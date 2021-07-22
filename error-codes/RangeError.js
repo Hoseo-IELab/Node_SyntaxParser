@@ -17,3 +17,5 @@ catch(error)
     // Handle the error
   }
 }
+
+check(5000000);
