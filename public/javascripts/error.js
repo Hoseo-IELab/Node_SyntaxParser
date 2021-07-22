@@ -1,6 +1,6 @@
 const errorList = [
     {
-        e: 'RangeError: invalid array length',
-        desc: '범위 오류: 배열 길이가 잘못됐습니다.'
+        e: 'EvalError: ',
+        desc: 'Eval 오류: 전역 eval() 함수에 관한 오류.'
     },
 ]
