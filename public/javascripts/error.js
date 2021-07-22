@@ -1,61 +1,42 @@
 const errorList = [
     {
-        e: 'SyntaxError: missing ] after element list',
-        desc: '대괄호가 없습니다. 대괄호 여부를 확인해주세요.'
+        e: 'EvalError',
+        desc: 'Eval 오류: 전역 eval() 함수에 관한 오류.'
     },
 
     {
-        e: 'TypeError: invalid Array.prototype.sort argument',
-        desc: 'sort 배열의 인수가 정의되지 않았거나 피연산자와 비교하는 함수 입니다.'
+        e: 'RangeError',
+        desc: '범위 오류: 숫자 변수나 매개변수가 유효한 범위를 벗어났습니다.'
     },
 
     {
-        e: 'Warning: -file- is being assigned a //# sourceMappingURL, but already has one',
-        desc: 'sort 배열의 인수가 정의되지 않았거나 피연산자와 비교하는 함수 입니다.'
+        e: 'ReferenceError',
+        desc: '참조 오류: 선언된 적이 없는 변수를 참조하려고 합니다.'
     },
 
     {
-        e: 'RangeError: radix must be an integer',
-        desc: 'Number.prototype.toString()과 BigInt.prototype.toString() 에 사용자되는 인수는 2~36 사이의 정수여야 합니다.'
+        e: 'SyntaxError',
+        desc: '구문 오류: 언어의 구문에 맞지 않는 토큰이나 토큰 순서입니다.'
     },
 
     {
-        e: 'SyntaxError: invalid regular expression flag',
-        desc: '코드에 잘못된 정규식 플래그가 있습니다. g, i, m, s, u, y 중 하나만 사용해 주십시오.'
+        e: 'TypeError',
+        desc: '자료형 오류: 변수나 매개변수가 유효한 자료형이 아닙니다.'
     },
 
     {
-        e: 'SyntaxError: return not in function',
-        desc: '리턴값이 함수가 아닙니다. 중괄호 확인 및 반환값을 확인해 주세요.'
+        e: 'URIError',
+        desc: 'URI 오류: encodeURI()나 decodeURl() 함수에 부적절한 매개변수를 제공했습니다.'
     },
 
     {
-        e: 'TypeError: X.prototype.y called on incompatible type',
-        desc: '주어진 객체에 일치하지 않는 유형의 호출이 있습니다.'
+        e: 'AggregateError',
+        desc: '집계 오류: 하나의 동작이 여러 개의 오류를 발생시켰습니다.'
     },
 
     {
-        e: "ReferenceError: can't access lexical declaration",
-        desc: '어휘 변수가 초기회 되기 전에 액세스 되었습니다.(let 또는 const 중복 선언됨)'
+        e: 'InternalError',
+        desc: '내부 오류: JavaScript 엔진의 내부에서 오류가 발생했습니다.'
     },
 
-    {
-        e: "TypeError: can't access property",
-        desc: 'x가 정의되지 않았습니다. x가 null 혹은 undefined인지 확인해주세요.'
-    },
-
-    {
-        e: "TypeError: can't assign to property",
-        desc: 'x가 객체로 선언되지 않았습니다. x에 대한 객체 선언을 해주십시오.'
-    },
-
-    {
-        e: 'RangeError: invalid date',
-        desc: '유효하지 않은 날짜 문자열이 Date 또는 Date.parse()에 제공되었습니다.'
-    },
-
-    {
-        e: 'SyntaxError: test for equality (==) mistyped as assignment (=)?',
-        desc: '같음(==)이 할당(=)으로 잘못 입력되었습니다.'
-    }
 ]
