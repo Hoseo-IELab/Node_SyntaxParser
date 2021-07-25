@@ -1,13 +1,11 @@
 const { json } = require('express');
-const fs = require('fs');
 const { stringify } = require('querystring');
+const fs = require('fs');
 const path = require('path');
 
 const codeDirPath = path.join(__dirname, '../jsonParser/playbookCode');
-
 const dataBuffer = fs.readFileSync('playbook.json'); // read JSON
 const dataJSON = dataBuffer.toString();
-
 const data = JSON.parse(dataJSON);
 
 
@@ -29,7 +27,6 @@ fs.readdir(codeDirPath, function (err, files){
             if (err == -1){
                 console.log("코드에 "+ String(data.input.items[i].name) + "가 없습니다.");
             }
-            
         }
         
         console.log();
@@ -43,5 +40,3 @@ fs.readdir(codeDirPath, function (err, files){
         }
     })
 });
-
-
