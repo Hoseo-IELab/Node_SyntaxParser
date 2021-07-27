@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const codeDirPath = path.join(__dirname, '../jsonParser/playbookCode');
-const dataBuffer = fs.readFileSync('playbook.json'); // read JSON
+const dataBuffer = fs.readFileSync('jsonParser/playbook.json'); // read JSON
 const dataJSON = dataBuffer.toString();
 const data = JSON.parse(dataJSON);
 
