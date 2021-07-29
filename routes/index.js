@@ -21,40 +21,23 @@ let sec = date.getSeconds();
 sec = sec >= 10 ? sec : '0' + sec;
 let purchaseDay = year + '-' + month + '-' + day + '_' + hour + '-' + min + '-' + sec;
 
+//json Parser
+
+//json Parser_end
+const { json } = require('express');
+const { stringify } = require('querystring');
+
+const codeDirPath = path.join(__dirname, '../jsonParser/playbookCode');
+const dataBuffer = fs.readFileSync('jsonParser/playbook.json'); // read JSON
+const dataJSON = dataBuffer.toString();
+const data = JSON.parse(dataJSON);
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Node Parser in IE Lab' });
-  fs.readdir(directoryPath1, function (err, files) {
-    //handling error
-    if (err) {
-        return console.log('Unable to scan directory: ' + err);
-    } 
-    //listing all files using forEach
-    files.forEach(function (file) {
-        // Do whatever you want to do with the file
-        console.log(file);
-        const fileRead = fs.readFileSync(directoryPath1+'/'+file);
-        const fr = fileRead.toString();
-        const codeString = String(fr);
-
-        try {
-            eval(codeString);
-        }catch(error)
-        {
-            count += 1;
-            const errorString = String(error);
-            console.log(purchaseDay);
-            fs.writeFile(directoryPath2+'/'+purchaseDay+'_'+count+'.txt', errorString, 'utf8', function(error){
-                console.log("write end");
-            });
-        }
-    });
-  });
 });
 
-router.post('/', function(req, res, next) {
-  res.render('index', { title: 'Node Parser in IE Lab' });
+router.post('/syntax', function(req, res, next) {
   fs.readdir(directoryPath1, function (err, files) {
     //handling error
     if (err) {
@@ -83,6 +66,42 @@ router.post('/', function(req, res, next) {
         }
     });
   });
+  res.redirect("/");
 });
+
+router.post('/json', function(req, res, next) {
+    fs.readdir(codeDirPath, function (err, files){
+        //handling error
+        if (err) {
+            return console.log('Unable to scan directory: ' + err);
+        }
+        // listening all files using forEach
+        files.forEach(function (file){
+            const codeBuffer = String(fs.readFileSync(codeDirPath + '/' + file));  // read js code 
+    
+    
+            for(let i=0; i<data.input.items.length; i++){
+                let findString = "$" + String(data.input.items[i].name) + " = input['" + String(data.input.items[i].name) + "']";
+            
+                err = codeBuffer.indexOf(findString);
+                if (err == -1){
+                    console.log("코드에 "+ String(data.input.items[i].name) + "가 없습니다.");
+                }
+            }
+            
+            console.log();
+            for(let i=0; i<data.output.items.length; i++){
+                let findString = String(data.output.items[i].name) + ":";
+                
+                err = codeBuffer.indexOf(findString);
+                if (err == -1){
+                    console.log("코드에 "+ String(data.output.items[i].name) + "가 없습니다.");
+                }
+            }
+            res.redirect("/");
+        })
+    });
+  });
+
 
 module.exports = router;
