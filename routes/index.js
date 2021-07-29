@@ -78,14 +78,16 @@ router.post('/json', function(req, res, next) {
         // listening all files using forEach
         files.forEach(function (file){
             const codeBuffer = String(fs.readFileSync(codeDirPath + '/' + file));  // read js code 
-    
+            let alertStr = "";
     
             for(let i=0; i<data.input.items.length; i++){
+                
+
                 let findString = "$" + String(data.input.items[i].name) + " = input['" + String(data.input.items[i].name) + "']";
             
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    console.log("코드에 "+ String(data.input.items[i].name) + "가 없습니다.");
+                    alertStr += String(data.input.items[i].name) + "\n";
                 }
             }
             
@@ -95,10 +97,17 @@ router.post('/json', function(req, res, next) {
                 
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    console.log("코드에 "+ String(data.output.items[i].name) + "가 없습니다.");
+                    alertStr += String(data.output.items[i].name) + "\n";
                 }
             }
-            res.redirect("/");
+            
+            if(alertStr == ""){
+                alertStr = "속성과 코드가 일치합니다.";
+            }
+            
+            let sendStr = String('<script type="text/javascript">alert(' + String(alertStr) +');</script>');
+            res.send(sendStr);
+            //res.redirect('/');
         })
     });
   });
