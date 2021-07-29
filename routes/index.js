@@ -87,7 +87,7 @@ router.post('/json', function(req, res, next) {
             
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    alertStr += "(1:1 대응 오류) Input 코드에 " + String(data.input.items[i].name) + " 속성이 없습니다.\n";
+                    alertStr += "(1:1 대응 오류) Input 코드에 " + String(data.input.items[i].name) + " 속성이 없습니다.";
                 }
             }
             console.log();
@@ -96,7 +96,7 @@ router.post('/json', function(req, res, next) {
                 
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    alertStr += "(1:1 대응 오류) Output 코드에 " + String(data.output.items[i].name) + " 속성이 없습니다.\n";
+                    alertStr += "(1:1 대응 오류) Output 코드에 " + String(data.output.items[i].name) + " 속성이 없습니다.";
                 }
             }
             
@@ -114,7 +114,7 @@ router.post('/json', function(req, res, next) {
             //res.write("<script>alert(\'Hi!\');location.href=\'/\';</script>");
             //res.write("<script>alert(" + alertStr + ");location.href=\'/\';</script>");
             //res.write(`<script>alert("${alertStr}");location.href=\'/\';</script>`);
-            res.write(`<script>alert("${alertStr}");</script>`);
+            res.write(`<script>alert("${alertStr}");location.href=\'/\';</script>`);
             //res.write("<script>alert(alertStr)</script>");
             //res.write("<script>location.href=\'/\'</script>");
         })
