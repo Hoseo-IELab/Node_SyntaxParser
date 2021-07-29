@@ -34,7 +34,7 @@ const data = JSON.parse(dataJSON);
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Node Parser in IE Lab' });
+  res.render('index', {title: 'Node Parser in IE Lab' });
 });
 
 router.post('/syntax', function(req, res, next) {
@@ -87,29 +87,40 @@ router.post('/json', function(req, res, next) {
             
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    alertStr += String(data.input.items[i].name) + "\n";
+                    alertStr += "(1:1 대응 오류) Input 코드에 " + String(data.input.items[i].name) + " 속성이 없습니다.\n";
                 }
             }
-            
             console.log();
             for(let i=0; i<data.output.items.length; i++){
                 let findString = String(data.output.items[i].name) + ":";
                 
                 err = codeBuffer.indexOf(findString);
                 if (err == -1){
-                    alertStr += String(data.output.items[i].name) + "\n";
+                    alertStr += "(1:1 대응 오류) Output 코드에 " + String(data.output.items[i].name) + " 속성이 없습니다.\n";
                 }
             }
             
             if(alertStr == ""){
                 alertStr = "속성과 코드가 일치합니다.";
             }
+
             
-            let sendStr = String('<script type="text/javascript">alert(' + String(alertStr) +');</script>');
-            res.send(sendStr);
-            //res.redirect('/');
+            
+            console.log(alertStr);
+            //res.render('index', {title: 'Node Parser in IE Lab' });
+            //res.send('\"<script>alert(\" + alertStr + \")</script>\"');
+            //let sendStr = String("\'<script>alert(\' + String(alertStr) +\');</script>\'");
+            //res.send(alertStr);
+            //res.write("<script>alert(\'Hi!\');location.href=\'/\';</script>");
+            //res.write("<script>alert(" + alertStr + ");location.href=\'/\';</script>");
+            //res.write(`<script>alert("${alertStr}");location.href=\'/\';</script>`);
+            res.write(`<script>alert("${alertStr}");</script>`);
+            //res.write("<script>alert(alertStr)</script>");
+            //res.write("<script>location.href=\'/\'</script>");
         })
     });
+
+    
   });
 
 

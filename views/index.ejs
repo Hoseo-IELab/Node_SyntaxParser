@@ -3,6 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body>
     <h1 style="text-align: center;">Node Syntax Parser 1.0</h2>
@@ -18,43 +19,62 @@
     <p style="text-align: center;">아래의 코드를 예제로 진행하였습니다.</p>
     <div class="view-line">
         <p>
-            //* UserDefine Start *//<br>
+            //* UserDefine Start *// <br>
             const userDefine = {<br>
-                <br>
+            <br>
             };<br>
             //* UserDefine End *//<br>
             <br>
             isAlive () {<br>
                 return false<br>
             }<br>
-            <br>
             async run (input) {<br>
                 //* Input Start *//<br>
-                const $ip = input['ip'];<br>
-                const $port = input['port'];<br>
-                const $user = input['user'];<br>
-                const $pwd = input['pwd'];<br>
-                const $file_name = input['file_name'];<br>
+                const $node = input['node']<br>
+                const $pool_group_id = input['pool_group_id']<br>
+                const $from = input['from']<br>
                 //* Input End *//<br>
                 <br>
-                <br>
-                let cmd = 'cat -b ' + file_name;<br>
-                <br>
-                let url ='/api/ssh/command';<br>
+                let url = '/api/BD1AIPlus/deviceCustomer';<br>
                 <br>
                 let data = {<br>
-                    ip:$ip,<br>
-                    port:$port,<br>
-                    user:$user,<br>
-                    pwd:$pwd,<br>
-                    cmd: cmd,<br>
+                    node: $node,<br>
+                    pool_group_id: $pool_group_id,<br>
+                    from: $from<br>
                 }<br>
                 <br>
                 let h = new HttpClient()<br>
                 try {<br>
                     const res = await h.api(url, data)<br>
+                    this.console.log('response:', JSON.stringify(res));<br>
+                    this.console.log('response status:', res.status);<br>
+                    this.console.log('response data:', JSON.stringify(res.data));<br>
+                    <br>
+                    const _data = res.data.resultData;<br>
+                    <br>
                     return {<br>
-                        result: res.resultData<br>
+                        id: _data.id,<br>
+                        rdate: _data.rdate,<br>
+                        udate: _data.udate,<br>
+                        pnode: _data.pnode,<br>
+                        name: _data.name,<br>
+                        flag: _data.flag,<br>
+                        device_type_id: _data.device_type_id,<br>
+                        sensor_id: _data.sensor_id,<br>
+                        nat_ip: _data.nat_ip,<br>
+                        device_ip: _data.device_ip,<br>
+                        delimiter: _data.delimiter,<br>
+                        port: _data.port,<br>
+                        ssh_id: _data.ssh_id,<br>
+                        ssh_pwd: _data.ssh_pwd,<br>
+                        ssh_port: _data.ssh_port,<br>
+                        network_img: _data.network_img,<br>
+                        img_data_url: _data.img_data_url,<br>
+                        img_size: _data.img_size,<br>
+                        user_id: _data.user_id,<br>
+                        delete_flag: _data.delete_flag,<br>
+                        ip_type: _data.ip_type,<br>
+                        admin_mail: _data.admin_mail<br>
                     }<br>
                 } catch(e) {<br>
                     throw e<br>
