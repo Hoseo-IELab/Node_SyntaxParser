@@ -35,6 +35,7 @@ const data = JSON.parse(dataJSON);
 
 router.get('/', function(req, res, next) {
   res.render('index', {title: 'Node Parser in IE Lab' });
+  res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
 });
 
 router.post('/syntax', function(req, res, next) {
@@ -70,6 +71,7 @@ router.post('/syntax', function(req, res, next) {
 });
 
 router.post('/json', function(req, res, next) {
+    res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
     fs.readdir(codeDirPath, function (err, files){
         //handling error
         if (err) {
@@ -107,15 +109,8 @@ router.post('/json', function(req, res, next) {
             
             
             console.log(alertStr);
-            //res.render('index', {title: 'Node Parser in IE Lab' });
-            //res.send('\"<script>alert(\" + alertStr + \")</script>\"');
-            //let sendStr = String("\'<script>alert(\' + String(alertStr) +\');</script>\'");
             //res.send(alertStr);
-            //res.write("<script>alert(\'Hi!\');location.href=\'/\';</script>");
-            //res.write("<script>alert(" + alertStr + ");location.href=\'/\';</script>");
-            //res.write(`<script>alert("${alertStr}");location.href=\'/\';</script>`);
-            res.write(`<script>alert("${alertStr}");location.href=\'/\';</script>`);
-            //res.write("<script>alert(alertStr)</script>");
+            res.write(`<script type="text/javascript" charset="utf-8">alert("${alertStr}");location.href=\'/\';</script>`);
             //res.write("<script>location.href=\'/\'</script>");
         })
     });

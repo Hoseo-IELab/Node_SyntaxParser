@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body>
-    <h1 style="text-align: center;">Node Syntax Parser 1.0</h2>
+    <h1 style="text-align: center;">Node Syntax Parser in IE Lab</h2>
     <div class="description">
         <p>
             [작동 방식]<br>
-            1. 에러 로그를 불러옴(.txt파일)<br>
-            2. Preview를 통해 에러를 보여줌<br>
+            1. Create Logs btn을 통해 에러 로그를 생성<br>
+            &nbsp;&nbsp;&nbsp;(/errorList/YY-mm-dd_HH-mm-ss_number)<br>
+            2. errorList에서 에러 로그를 불러옴<br>
             3. Parsing 버튼을 눌러 에러의 내용을 한글로 변환<br>
-            4. Alert 버튼을 눌러 변환된 메시지를 알림해줌.
+            4. Alert 버튼을 눌러 변환된 메시지를 알림해줌<br>
+            5. Attribute Check btn을 통해 playbook js파일과 해당 json파일을 비교
         </p>
     </div>
     <p style="text-align: center;">아래의 코드를 예제로 진행하였습니다.</p>
@@ -84,12 +86,12 @@
     </div>
     
 
-    <form action="/syntax", method="POST">
-        <button calss="test">Test Button</button>
+    <form action="/syntax", method="POST" style="text-align: center; margin-bottom: 30px;">
+        <button calss="test"">Create ErrorLogs</button>
     </form>
 
-    <form action="/json", method="POST">
-        <button calss="test">속성 테스트</button>
+    <form action="/json", method="POST" style="text-align: center; margin-bottom: 30px;">
+        <button calss="test">Attribute Check</button>
     </form>
 
     <form id="display">
@@ -116,5 +118,4 @@
   <script src="/javascripts/error.js"></script>
   <script src="/javascripts/Parsing.js"></script>
   <script src="/javascripts/setData.js"></script>
-  <script src="/javascripts/createLog.js"></script>
 </html>
