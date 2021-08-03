@@ -85,8 +85,8 @@ exports.json_parse = function(jscode, playbook){
     return str;
 }
 
-exports.err_catch = function(codedir) {
-    const fileRead = fs.readFileSync(String(codedir));
+exports.err_catch = function(jscode) {
+    const fileRead = fs.readFileSync(String(jscode)); // read js code
     const fr = fileRead.toString();
     const codeString = String(fr);
     
