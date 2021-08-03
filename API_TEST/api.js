@@ -105,7 +105,6 @@ exports.err_catch_dir = function(codedir, logdir) {
     const directoryPath2 = path.join(__dirname, logdir);  // log output dir
     
     var count = 0;
-    let purchaseDay = timeReturn();
 
     fs.readdir(directoryPath1, function (err, files) {
         //handling error
@@ -123,6 +122,7 @@ exports.err_catch_dir = function(codedir, logdir) {
                 eval(codeString);
             }catch(error)
             {
+                let purchaseDay = timeReturn();
                 count += 1;
                 const errorString = errTranslate(String(error));
                 fs.writeFile(directoryPath2+'/'+purchaseDay+'_'+count+'.txt', errorString, 'utf8', function(error){
