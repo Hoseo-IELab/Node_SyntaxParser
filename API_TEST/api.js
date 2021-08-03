@@ -3,7 +3,7 @@ const { stringify } = require('querystring');
 const fs = require('fs');
 const path = require('path');
 
-function errReturn(err)
+function errTranslate(err)
 {
     if(err.includes('EvalError')){
         return 'Eval 오류: 전역 eval() 함수에 관한 오류.';
@@ -94,7 +94,7 @@ exports.err_catch = function(codedir) {
         eval(codeString);
     }catch(error)
     {
-        const errorString = errReturn(String(error));
+        const errorString = errTranslate(String(error));
         return errorString;
     }
     return "에러가 없습니다.";
@@ -124,7 +124,7 @@ exports.err_catch_dir = function(codedir, logdir) {
             }catch(error)
             {
                 count += 1;
-                const errorString = errReturn(String(error));
+                const errorString = errTranslate(String(error));
                 fs.writeFile(directoryPath2+'/'+purchaseDay+'_'+count+'.txt', errorString, 'utf8', function(error){
                     console.log("write end");
                 });
