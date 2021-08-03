@@ -32,6 +32,8 @@ function errTranslate(err)
     } else if(err.includes('InternalError')){
         return '내부 오류: JavaScript 엔진의 내부에서 오류가 발생했습니다.';
 
+    } else {
+        return err;
     }
 }
 
