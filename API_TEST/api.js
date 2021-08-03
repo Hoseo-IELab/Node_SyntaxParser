@@ -35,6 +35,26 @@ function errReturn(err)
     }
 }
 
+function timeReturn()
+{
+    // Get Date Format YY-mm-dd HH:mm:ss
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month >= 10 ? month : '0' + month;
+    let day = date.getDate();
+    day = day >= 10 ? day : '0' + day;
+    let hour = date.getHours();
+    hour = hour >= 10 ? hour : '0' + hour;
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+    sec = sec >= 10 ? sec : '0' + sec;
+    let purchaseDay = year + '-' + month + '-' + day + '_' + hour + '-' + min + '-' + sec;
+
+    return String(purchaseDay)
+}
+
+
 exports.json_parse = function(playbook, jscode){
     const dataBuffer = fs.readFileSync(String(playbook)); // read JSON
     const codeBuffer = fs.readFileSync(String(jscode));  // read js code 
@@ -84,20 +104,8 @@ exports.err_catch_dir = function(codedir, logdir) {
     const directoryPath1 = path.join(__dirname, codedir); // error code dir
     const directoryPath2 = path.join(__dirname, logdir);  // log output dir
     
-    // Get Date Format YY-mm-dd HH:mm:ss
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    month = month >= 10 ? month : '0' + month;
-    let day = date.getDate();
-    day = day >= 10 ? day : '0' + day;
-    let hour = date.getHours();
-    hour = hour >= 10 ? hour : '0' + hour;
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    sec = sec >= 10 ? sec : '0' + sec;
-    let purchaseDay = year + '-' + month + '-' + day + '_' + hour + '-' + min + '-' + sec;
     var count = 0;
+    let purchaseDay = timeReturn();
 
     fs.readdir(directoryPath1, function (err, files) {
         //handling error
