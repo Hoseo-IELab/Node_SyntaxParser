@@ -3,6 +3,37 @@ const { stringify } = require('querystring');
 const fs = require('fs');
 const path = require('path');
 
+function errReturn(err)
+{
+    if(err.includes('EvalError')){
+        return 'Eval 오류: 전역 eval() 함수에 관한 오류.';
+
+    } else if(err.includes('RangeError')){
+        return '범위 오류: 숫자 변수나 매개변수가 유효한 범위를 벗어났습니다.';
+
+    } else if(err.includes('ReferenceError')){
+        return '참조 오류: 선언된 적이 없는 변수를 참조하려고 합니다.';
+
+    } else if(err.includes('RangeError')){
+        return '범위 오류: 숫자 변수나 매개변수가 유효한 범위를 벗어났습니다.';
+
+    } else if(err.includes('SyntaxError')){
+        return '구문 오류: 언어의 구문에 맞지 않는 토큰이나 토큰 순서입니다.';
+
+    } else if(err.includes('TypeError')){
+        return '자료형 오류: 변수나 매개변수가 유효한 자료형이 아닙니다.';
+
+    } else if(err.includes('URIError')){
+        return 'URI 오류: encodeURI()나 decodeURl() 함수에 부적절한 매개변수를 제공했습니다.';
+
+    } else if(err.includes('AggregateError')){
+        return '집계 오류: 하나의 동작이 여러 개의 오류를 발생시켰습니다.';
+
+    } else if(err.includes('InternalError')){
+        return '내부 오류: JavaScript 엔진의 내부에서 오류가 발생했습니다.';
+
+    }
+}
 
 exports.json_parse = function(playbook, jscode){
     const dataBuffer = fs.readFileSync(String(playbook)); // read JSON
@@ -43,7 +74,7 @@ exports.err_catch = function(codedir) {
         eval(codeString);
     }catch(error)
     {
-        const errorString = String(error);
+        const errorString = errReturn(String(error));
         return errorString;
     }
     return "에러가 없습니다.";
@@ -74,22 +105,18 @@ exports.err_catch_dir = function(codedir, logdir) {
             return console.log('Unable to scan directory: ' + err);
         } 
         //listing all files using forEach
-        console.log(files);
         files.forEach(function (file) {
             // Do whatever you want to do with the file
-            console.log(file);
             const fileRead = fs.readFileSync(directoryPath1+'/'+file);
             const fr = fileRead.toString();
             const codeString = String(fr);
     
             try {
-                console.log(codeString);
                 eval(codeString);
             }catch(error)
             {
                 count += 1;
-                const errorString = String(error);
-                console.log(purchaseDay);
+                const errorString = errReturn(String(error));
                 fs.writeFile(directoryPath2+'/'+purchaseDay+'_'+count+'.txt', errorString, 'utf8', function(error){
                     console.log("write end");
                 });

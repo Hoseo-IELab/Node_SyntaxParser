@@ -13,4 +13,4 @@ console.log(jsonCheck.err_catch('./error-codes/ex4.js'));
 
 
 
-//console.log(jsonCheck.err_catch_dir('../error-codes', '/log-dir'));
+console.log(jsonCheck.err_catch_dir('../error-codes', '/log-dir'));
