@@ -55,7 +55,7 @@ function timeReturn()
 }
 
 
-exports.json_parse = function(playbook, jscode){
+exports.json_parse = function(jscode, playbook){
     const dataBuffer = fs.readFileSync(String(playbook)); // read JSON
     const codeBuffer = fs.readFileSync(String(jscode));  // read js code 
 
