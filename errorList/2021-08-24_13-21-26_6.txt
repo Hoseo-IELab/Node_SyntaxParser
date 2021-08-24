@@ -1,0 +1,1 @@
+TypeError: obj.map is not a function
